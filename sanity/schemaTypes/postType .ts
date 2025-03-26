@@ -17,19 +17,27 @@ export const postType = defineType({//document schema type
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'coverImage',
+      type: 'image',
+    }),
+    defineField({
       name: 'publishedAt',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'image',
-      type: 'image',
-    }),
-    defineField({
       name: 'body',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [        
+        { type: "block" }, // Block type for regular text (paragraphs, headings, etc.)
+        { type: "image", fields: [{
+          name: "caption",
+          title: "Caption",
+          type: "string",
+          description: "Description of the image",
+        }] }, // Image type for inserting images
+        ],
     }),
   ],
 })
