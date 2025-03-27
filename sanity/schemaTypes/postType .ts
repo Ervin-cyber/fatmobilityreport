@@ -17,6 +17,12 @@ export const postType = defineType({//document schema type
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'author',
+      type: 'reference',
+      to: {type: 'author'},
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'coverImage',
       type: 'image',
     }),
