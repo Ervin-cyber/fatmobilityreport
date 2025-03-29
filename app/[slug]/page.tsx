@@ -1,30 +1,19 @@
-import { PortableText, type SanityDocument } from "next-sanity";
+import { SanityDocument } from "next-sanity";
+import StoryDetailComponent from "../components/StoryDetailComponent";
+import StoryListComponent from "../components/StoryListComponent";
+
 import { client } from "@/sanity/client";
-import Link from "next/link";
-
-import { PortableTextComponents } from "../../components/PortableTextComponents";
-
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
-
+const CHECK_IF_CATEGORY_QUERY = `*[_type == "category" && slug.current == $slug][0]`;
 const options = { next: { revalidate: 30 } };
 
-export default async function PostPage({
-  params,
-}: {
+export default async function PostPage({ params }: {
   params: Promise<{ slug: string }>;
 }) {
-  const post = await client.fetch<SanityDocument>(POST_QUERY, await params, options);
+  const isCategory = await client.fetch<SanityDocument>(CHECK_IF_CATEGORY_QUERY, await params, options);
+  const filter = (await params).slug;
+  const page = isCategory ? await StoryListComponent({filter}) : await StoryDetailComponent({params});
 
   return (
-    <main className="container mx-auto min-h-screen max-w-4xl p-8 flex flex-col gap-4">
-      <Link href="/" className="hover:underline">
-        ← Back to posts
-      </Link>
-      <h1 className="text-6xl font-bold mb-8">{post.title}</h1>
-      <div className="prose">
-        <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
-        <PortableText value={post.body} components={PortableTextComponents}/>
-      </div>
-    </main>
+    page && page
   );
 }

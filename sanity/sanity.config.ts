@@ -10,9 +10,10 @@ export default defineConfig({
   projectId: 't2lmom4m',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool()],
+  basePath: '/admin',
 
+  plugins: [structureTool(), visionTool()],
   schema: {
-    types: schemaTypes,
+      types: schemaTypes,
   },
 })

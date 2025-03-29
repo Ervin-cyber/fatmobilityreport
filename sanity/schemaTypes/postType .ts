@@ -23,6 +23,16 @@ export const postType = defineType({//document schema type
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'categories',
+      type: 'array',
+      of: [
+        {
+        type: 'reference',
+        to: {type: 'category'}
+      }],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'coverImage',
       type: 'image',
     }),
