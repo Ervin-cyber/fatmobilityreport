@@ -17,6 +17,12 @@ export const categoryType = defineType({//category schema type
         validation: (rule) => rule.required(),
       }),
       defineField({
+        name: 'show_on_navigation_bar',
+        title: 'Show on navigation bar',
+        type: 'boolean',
+        initialValue: true,
+      }),
+      defineField({
         name: 'description',
         type: 'string',
       }),

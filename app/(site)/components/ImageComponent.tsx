@@ -16,7 +16,7 @@ export type ImageComponentProps = {
 export function ImageComponent({image,width,height} : ImageComponentProps) {
     if (!image) return null; 
     return (
-        <img className=" flex"
+        <img className="w-full flex"
         src={urlFor(image)?.width(width).height(height).url()}
         alt={"Cover Image"}
         width={width}

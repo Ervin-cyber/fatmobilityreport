@@ -1,4 +1,5 @@
-import { ImageComponent } from "@/app/components/ImageComponent";
+import { ImageComponent } from "./ImageComponent";
+
 
   interface SanityImage {
     asset: {
@@ -15,15 +16,16 @@ export const PortableTextComponents = {
     image: ({ value }: { value: SanityImage }) => {
       if (!value.asset._ref) return null; // Ensure there's a valid image URL
         return (
-          <div className="mt-4">
+          <div className="py-2">
             <ImageComponent image={value.asset._ref} width={651} height={366}/>
-          <p className="m-4">
-          <small>
-          {value.caption}
-          </small>
-          </p>
-          <hr></hr>
-        </div>
+            { value.caption && 
+              <p className="w-full border-b border-gray-300">
+                <small className="m-4">
+                {value.caption}
+                </small>
+              </p>
+            }
+          </div>
         );
       },
     },

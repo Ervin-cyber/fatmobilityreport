@@ -14,8 +14,16 @@ export async function getPosts( filter: string ) : Promise<Post[]> {
     return await client.fetch(POSTS_QUERY, {});
 }
 export async function getCategories() {
-  const CATEGORY_QUERY = `*[_type == "category"]|order(order asc){ _id, name, description, slug }`;
+  const CATEGORY_QUERY = `*[_type == "category" && show_on_navigation_bar]|order(order asc){ _id, name, description, slug }`;
+  const options = { next: { revalidate: 5 } };
   return await client.fetch<Category[]>(CATEGORY_QUERY, {}, options);
+}
+export async function getPostCategories(slug:string): Promise<string[]> {
+  const CATEGORY_QUERY = `*[_type == "category" && show_on_navigation_bar && _id in *[_type == "post" && slug.current == $slug][0].categories[]._ref].name`;
+  const options = { next: { revalidate: 5 } };
+  const value = await client.fetch<string[]>(CATEGORY_QUERY, {slug}, options);
+  console.log(value);
+  return value;
 }
 export async function getAuthorBySlug(slug: string) {
   const AUTHOR_QUERY = `*[_type == "author" && slug.current == $slug][0]`;
