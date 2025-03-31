@@ -11,7 +11,7 @@ export default async function PostListComponent({filter}: {filter:string}) {
     return (
         <div className="items-center">
           {
-            categoryDescription && <h1 className="font-arialblack text-3xl text-center text-black py-4">{categoryDescription}</h1>
+            categoryDescription && <h1 className="font-anton text-3xl text-center text-black py-4">{categoryDescription}</h1>
           }
           
           <div className="flex flex-col gap-y-4 divide-y divide-gray-300">

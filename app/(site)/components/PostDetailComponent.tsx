@@ -16,7 +16,7 @@ export default async function PostDetailComponent({ params }: { params: Promise<
   //
   return ( post &&
     <div className="py-5">
-      <h1 className="font-baskervville font-bold text-6xl text-black mb-8">{post.title}</h1>
+      <h1 className="font-baskervville text-5xl md:text-7xl text-black mb-8">{post.title}</h1>
       <div className="prose">
         <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
         <PortableText value={post.body} components={PortableTextComponents}/>    

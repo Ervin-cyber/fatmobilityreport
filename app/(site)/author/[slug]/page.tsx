@@ -11,12 +11,14 @@ export default async function AuthorPage({
   const author = await getAuthorBySlug((await params).slug);
 
   return (
-    <div className="border-b border-gray-300">
-      <h1 className="text-6xl text-black font-bold mb-8">{author.name}</h1>
-      <ImageRoundedComponent image={author.coverImage} width={150} height={150}/>
-      <div className="prose py-5">
+    <div className="border-b border-gray-300 py-5">
+      <div className="flex justify-center">
+        <ImageRoundedComponent image={author.coverImage} width={150} height={150}/>
+      </div>
+      <h1 className="flex justify-center font-baskervville text-5xl md:text-7xl text-black my-8">{author.name}</h1>
+      <div className="prose">
         <PortableText value={author.description} components={PortableTextComponents}/>
-        <p className="py-5">Registered: {new Date(author.registeredAt).toLocaleDateString()}</p>
+        <p className="py-5">Member since: {new Date(author.registeredAt).toLocaleDateString()}</p>
       </div>
     </div>
 

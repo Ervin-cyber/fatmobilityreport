@@ -19,6 +19,7 @@ export const authorType = defineType({//author schema type
       defineField({
         name: 'coverImage',
         type: 'image',
+        options: { hotspot : true },
       }),
       defineField({
         name: 'registeredAt',

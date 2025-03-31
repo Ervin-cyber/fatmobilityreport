@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-anton: var(--font-anton);
   --font-ubuntu-bold: var(--font-ubuntu-bold);
   --font-ubuntu-light: var(--font-ubuntu-light);
   --font-baskervville: var(--font-baskervville);

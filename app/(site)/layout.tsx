@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Ubuntu, Baskervville } from "next/font/google";
+import { Geist, Geist_Mono, Ubuntu, Baskervville, Anton } from "next/font/google";
 import "../globals.css";
 import Navbar from "./components/Navbar";
 import { getCategories } from "@/sanity/sanity-utils";
@@ -8,29 +8,47 @@ import { getCategories } from "@/sanity/sanity-utils";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap', 
+  adjustFontFallback: false,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap', 
+  adjustFontFallback: false,
 });
 
 const ubuntu_bold = Ubuntu({
   variable: "--font-ubuntu-bold",
   subsets: ["latin"],
   weight: "700",
+  display: 'swap', 
+  adjustFontFallback: false,
 });
 
 const ubuntu_light = Ubuntu({
   variable: "--font-ubuntu-light",
   subsets: ["latin"],
   weight: "300",
+  display: 'swap', 
+  adjustFontFallback: false,
 });
 
 const baskervville = Baskervville({
   variable: "--font-baskervville",
   subsets: ["latin"],
   weight: "400",
+  display: 'swap', 
+  adjustFontFallback: false,
+});
+
+const anton = Anton({
+  variable: "--font-anton",
+  subsets: ["latin"],
+  weight: "400",
+  display: 'swap', 
+  adjustFontFallback: false,
 });
 
 
@@ -48,7 +66,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu_bold.variable} ${ubuntu_light.variable} ${baskervville.variable}  antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu_bold.variable} ${ubuntu_light.variable} ${baskervville.variable} ${anton.variable} antialiased`}
       >
         <Navbar categories={categories}/>
         <main className="min-h-screen max-w-3xl px-3 md:mx-auto lg:mx-auto xl:mx-auto flex flex-col gap-4">
