@@ -35,3 +35,12 @@ export function ImageRoundedComponent({image,width,height} : ImageComponentProps
       />
     )
 }
+export function IconComponent({image,width,height} : ImageComponentProps) {
+  if (!image) return null; 
+  return (
+      <img className="flex w-6 h-6 object-cover"
+      src={urlFor(image)?.width(width).height(height).url()}
+      alt={"Cover Image"}
+    />
+  )
+}

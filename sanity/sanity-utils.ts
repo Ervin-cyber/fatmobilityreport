@@ -3,6 +3,7 @@ import { client } from "./client";
 import { Category } from "../types/Category";
 import { Author } from "../types/Author";
 import { Post } from "../types/Post";
+import { SocialPage } from "../types/SocialPage";
 const options = { next: { revalidate: 30 } };
 export async function getPosts( filter: string ) : Promise<Post[]> {
     const POSTS_QUERY = `*[
@@ -37,4 +38,10 @@ export async function getAuthorByPost(filter: string) {
   *[_type == "author" && _id == *[_type == "post" && slug.current == "${filter}"][0].author._ref][0]`
   const author = await client.fetch(AUTHOR_QUERY, {});
   return author;
+}
+export async function getSocialPages(): Promise<SocialPage[]>  {
+const SOCIAL_PAGE_QUERY = `
+*[_type == "social-page"]`
+const socialPages = await client.fetch<SocialPage[]>(SOCIAL_PAGE_QUERY, {});
+return socialPages;
 }

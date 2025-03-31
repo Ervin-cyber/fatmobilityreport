@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Ubuntu, Baskervville, Anton } from "next/font/google
 import "../globals.css";
 import Navbar from "./components/Navbar";
 import { getCategories } from "@/sanity/sanity-utils";
+import Footer from "./components/Footer";
 
 
 const geistSans = Geist({
@@ -69,9 +70,10 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${ubuntu_bold.variable} ${ubuntu_light.variable} ${baskervville.variable} ${anton.variable} antialiased`}
       >
         <Navbar categories={categories}/>
-        <main className="min-h-screen max-w-3xl px-3 md:mx-auto lg:mx-auto xl:mx-auto flex flex-col gap-4">
+        <main className="min-h-screen max-w-3xl px-3 md:mx-auto lg:mx-auto xl:mx-auto flex flex-col gap-4 mb-5">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );
