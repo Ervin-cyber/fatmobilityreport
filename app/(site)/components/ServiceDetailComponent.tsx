@@ -1,4 +1,4 @@
-import { PortableText, type SanityDocument } from "next-sanity";
+import { PortableText } from "next-sanity";
 import { PortableTextComponents } from "./PortableTextComponents";
 import { getServiceDetail } from "@/sanity/sanity-utils";
 

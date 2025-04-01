@@ -1,11 +1,8 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from 'react';
 const logoDark = "/images/logo.png";
-const logoLight = "/images/logo-white.png";
 const Logo = () => {
   return (
     <div className="absolute left-1/2 transform -translate-x-1/2">

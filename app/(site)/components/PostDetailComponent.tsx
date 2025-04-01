@@ -1,8 +1,7 @@
-import { PortableText, type SanityDocument } from "next-sanity";
+import { PortableText } from "next-sanity";
 import { PortableTextComponents } from "./PortableTextComponents";
 import AuthorPreviewComponent  from "./AuthorPreviewComponent";
 import { getAuthorByPost, getPostDetail } from "@/sanity/sanity-utils";
-import { getPortableTextPreview } from "../utils/utils";
 
 export default async function PostDetailComponent({ params }: { params: Promise<{ slug: string }>;}) {
   const author = await getAuthorByPost((await params).slug);
@@ -14,7 +13,7 @@ export default async function PostDetailComponent({ params }: { params: Promise<
         <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
         <PortableText value={post.body} components={PortableTextComponents}/>    
         <h1 className="text-lg text-center py-4 font-semibold text-gray-500">...</h1>    
-        <AuthorPreviewComponent slug={author.slug} _id={author._id} coverImage={author.coverImage} name={author.name} description={author.description} registeredAt={author.registeredAt}/>
+        <AuthorPreviewComponent slug={author.slug} _id={author._id} coverImage={author.coverImage} name={author.name} description={author.description}/>
       </div>
     </div>
 

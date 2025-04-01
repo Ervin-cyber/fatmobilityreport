@@ -1,8 +1,6 @@
-import Image from "next/image";
 import Logo from "./Logo";
 import { getSocialPages } from "@/sanity/sanity-utils";
 import { SocialPage } from "@/types/SocialPage";
-import Link from "next/link";
 import { IconComponent } from "./ImageComponent";
 
 export default async function Footer() {
@@ -16,7 +14,7 @@ export default async function Footer() {
                             socialPages.map((socialPage: SocialPage) => {
                                 return (
                                     <a href={socialPage.url} className="flex items-center py-3 md:py-0 gap-4 hover:opacity-80" key={socialPage._id}>
-                                    <IconComponent image={socialPage.icon} width={"25px"} height={"auto"}/>
+                                    <IconComponent image={socialPage.icon}/>
                                     <div className="">{socialPage.title}</div>
                                     </a>
                                 )

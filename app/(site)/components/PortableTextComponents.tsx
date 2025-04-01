@@ -3,7 +3,7 @@ import { DetailImageComponent } from "./ImageComponent";
 
   interface SanityImage {
     asset: {
-      _ref: any;
+      _ref: string;
       _type: string;
       url: string;
     };

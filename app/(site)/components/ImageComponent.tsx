@@ -67,7 +67,7 @@ export function ImageRoundedComponent({image,width,height} : ImageComponentProps
     />
   )
 }
-export function IconComponent({image,width,height} : ImageComponentProps) {
+export function IconComponent({image} : ImageComponentProps) {
   const url = urlFor(image)?.url();
   if (!url) return null; 
   return (
