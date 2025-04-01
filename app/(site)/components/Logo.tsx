@@ -1,14 +1,17 @@
 "use client";
+
+import { useTheme } from "next-themes";
 import Image from "next/image";
-//import { useEffect, useState } from "react";
 import Link from "next/link";
-//const [width] = useState(0);
+import { useEffect, useState } from 'react';
+const logoDark = "/images/logo.png";
+const logoLight = "/images/logo-white.png";
 const Logo = () => {
   return (
     <div className="absolute left-1/2 transform -translate-x-1/2">
       <Link href="/">
         <Image
-          src="/images/logo.png"
+          src={logoDark}
           alt="Logo"
           width={"130"}
           height={"70"}

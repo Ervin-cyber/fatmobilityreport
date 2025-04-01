@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import Image from "next/image";
-import { Category } from "@/types/Category";
 import { useState, useEffect } from "react";
 import { NavigationItem } from "@/types/NavigationItem";
 
