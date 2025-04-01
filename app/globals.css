@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #333333;
 }
 
 @theme inline {
@@ -10,17 +11,37 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-anton: var(--font-anton);
+  --font-ubuntu-bold: var(--font-ubuntu-bold);
+  --font-ubuntu-light: var(--font-ubuntu-light);
+  --font-baskervville: var(--font-baskervville);
 }
 
-@media (prefers-color-scheme: dark) {
+/*@media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}*/
+
+.font-arialblack {
+  font-family: "Arial Black", sans-serif;
+}
+
+h1 { font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; }
+h2 { font-size: 2rem; font-weight: 600; margin-bottom: 0.75rem; }
+h3 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem; }
+h4 { font-size: 1.5rem; font-weight: 500; margin-bottom: 0.25rem; }
+
+p {
+  word-wrap: break-word;  /* For old browsers */
+  overflow-wrap: break-word; /* Modern browsers */
+  word-break: break-word;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Helvetica, 'sans-serif'
 }
+  
