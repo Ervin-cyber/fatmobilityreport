@@ -14,7 +14,7 @@ export default async function PostDetailComponent({ params }: { params: Promise<
         <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
         <PortableText value={post.body} components={PortableTextComponents}/>    
         <h1 className="text-lg text-center py-4 font-semibold text-gray-500">...</h1>    
-        <AuthorPreviewComponent slug={author.slug} _id={author._id} coverImage={author.coverImage} name={author.name} description={author.description}/>
+        <AuthorPreviewComponent slug={author.slug} _id={author._id} coverImage={author.coverImage} name={author.name} description={author.description} registeredAt={author.registeredAt}/>
       </div>
     </div>
 

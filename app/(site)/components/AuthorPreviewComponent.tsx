@@ -3,7 +3,7 @@ import { ImageRoundedComponent } from "./ImageComponent";
 import { Author } from "@/types/Author";
 import { getPortableTextPreview } from "../utils/utils";
 
-export default async function AuthorPreviewComponent({slug, _id, coverImage, name, description} : Author) {
+export default async function AuthorPreviewComponent({slug, _id, coverImage, name, description, registeredAt} : Author) {
     return (
         <div className="border-b border-gray-300">
             <div>

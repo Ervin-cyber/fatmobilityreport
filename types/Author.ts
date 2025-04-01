@@ -7,6 +7,6 @@ export type Author = {
     name: string;
     slug: Slug;
     coverImage: string;
-    registeredAt?: Date;
-    description?: PortableTextBlock[];
+    registeredAt: Date;
+    description: PortableTextBlock[];
 }

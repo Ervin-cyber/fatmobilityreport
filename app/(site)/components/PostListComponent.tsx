@@ -1,16 +1,13 @@
 import Link from "next/link";
-import { client } from "@/sanity/client";
 import { PostPreviewComponent } from "./ImageComponent";
-import { getCategories, getPosts } from "@/sanity/sanity-utils";
+import { getCategories, getCategoryDescription, getPosts } from "@/sanity/sanity-utils";
 import { Post } from "@/types/Post";
 import { Category_ref } from "@/types/Category";
 import { findNameById, findSlugById, getPortableTextPreview } from "../utils/utils";
 
-const options = { next: { revalidate: 30 } };
-
-export default async function PostListComponent({slug}: {slug:string}) {
-    const posts = await getPosts(slug);
-    const categoryDescription:string = await client.fetch(`*[_type == "category" && slug.current == "${slug}"][0].description`, {}, options);
+export default async function PostListComponent({slug, filter}: {slug:string, filter:string}) {
+    const posts = await getPosts(filter);
+    const categoryDescription = await getCategoryDescription(slug);
     const categories = await getCategories();
     return (
         <div className="items-center">

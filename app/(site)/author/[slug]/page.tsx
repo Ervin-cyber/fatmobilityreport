@@ -1,8 +1,9 @@
 import { PortableText } from "next-sanity";
 import { PortableTextComponents } from "../../../(site)/components/PortableTextComponents";
-import { getAuthorBySlug } from "@/sanity/sanity-utils";
+import { getAuthorBySlug, getAuthorPosts } from "@/sanity/sanity-utils";
 import { ImageRoundedComponent } from "../../components/ImageComponent";
 import notFound from "../../[...not-found]/page";
+import PostListComponent from "../../components/PostListComponent";
 
 export default async function AuthorPage({
   params,
@@ -10,6 +11,8 @@ export default async function AuthorPage({
   params: Promise<{ slug: string }>;
 }) {
   const author = await getAuthorBySlug((await params).slug);
+  const posts = await getAuthorPosts(author._id);
+
   if (!author) {
     return notFound();
   }
@@ -22,6 +25,10 @@ export default async function AuthorPage({
       <div className="prose">
         <PortableText value={author.description} components={PortableTextComponents}/>
         <p className="py-5">Member since: {new Date(author.registeredAt).toLocaleDateString()}</p>
+      </div>
+      <div className="border-t border-gray-300">
+        <h1 className="text-2xl text-black font-bold pt-4">Posts by author</h1>
+      <PostListComponent slug="" filter={`author._ref == "${author._id}"`} />
       </div>
     </div>
 
