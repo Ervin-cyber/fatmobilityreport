@@ -1,6 +1,6 @@
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { PortableTextBlock } from "next-sanity";
 import { Slug } from "sanity";
+import { Category_ref } from "./Category";
 
 export type Post = {
     _id: string;
@@ -8,7 +8,7 @@ export type Post = {
     title: string;
     slug: Slug;
     author: string;
-    categories: Array<String>;
+    categories: Array<Category_ref>;
     coverImage: string;
     publishedAt: Date;
     body: PortableTextBlock[];

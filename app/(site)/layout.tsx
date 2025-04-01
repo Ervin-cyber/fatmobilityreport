@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Ubuntu, Baskervville, Anton } from "next/font/google";
 import "../globals.css";
 import Navbar from "./components/Navbar";
-import { getCategories } from "@/sanity/sanity-utils";
+import { getCategories, getNavigationItems } from "@/sanity/sanity-utils";
 import Footer from "./components/Footer";
 
 
@@ -63,14 +63,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const categories = await getCategories();
+  const categories = await getNavigationItems();
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu_bold.variable} ${ubuntu_light.variable} ${baskervville.variable} ${anton.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu_bold.variable} ${ubuntu_light.variable} ${baskervville.variable} ${anton.variable} antialiased min-h-screen`}
       >
-        <Navbar categories={categories}/>
-        <main className="min-h-screen max-w-3xl px-3 md:mx-auto lg:mx-auto xl:mx-auto flex flex-col gap-4 mb-5">
+        <Navbar navigationItems={categories}/>
+        <main className="flex-grow max-w-3xl px-3 md:mx-auto lg:mx-auto xl:mx-auto flex flex-col gap-4 mb-5">
           {children}
         </main>
         <Footer />

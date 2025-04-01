@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { client } from "@/sanity/client";
-import { ImageComponent } from "./ImageComponent";
-import { getPostCategories, getPosts } from "@/sanity/sanity-utils";
+import { PostPreviewComponent } from "./ImageComponent";
+import { getCategories, getPosts } from "@/sanity/sanity-utils";
 import { Post } from "@/types/Post";
+import { Category_ref } from "@/types/Category";
+import { findNameById, findSlugById, getPortableTextPreview } from "../utils/utils";
 
 const options = { next: { revalidate: 30 } };
-export default async function PostListComponent({filter}: {filter:string}) {
-    const posts = await getPosts(filter);
-    const categoryDescription:string = await client.fetch(`*[_type == "category" && slug.current == "${filter}"][0].description`, {}, options);
+
+export default async function PostListComponent({slug}: {slug:string}) {
+    const posts = await getPosts(slug);
+    const categoryDescription:string = await client.fetch(`*[_type == "category" && slug.current == "${slug}"][0].description`, {}, options);
+    const categories = await getCategories();
     return (
         <div className="items-center">
           {
@@ -17,15 +21,21 @@ export default async function PostListComponent({filter}: {filter:string}) {
           <div className="flex flex-col gap-y-4 divide-y divide-gray-300">
             {posts.map((post: Post) => (
               <div className="flex flex-col sm:flex-row space-y-4 sm:max-w" key = {post._id}>
-                <Link className="flex-shrink-0 hover:opacity-80 transition object-cover" href={`/post/${post.slug.current}`}>
-                  <ImageComponent image={post.coverImage} width={370} height={200} />
+                <Link className="flex sm:flex-shrink-0 hover:opacity-80 transition object-cover" href={`/post/${post.slug.current}`}>
+                  <PostPreviewComponent image={post.coverImage}/>
                 </Link>
                 <div className="text-left sm:px-6 md:px-6 lg:px-6 xl:px-6">
-                  <span className="text-sm text-gray-700">CLASSIC</span>
+                  {
+                    post.categories.map((category: Category_ref) => (
+                      <Link className="" href={`/${findSlugById(categories, category._ref)}`} key={category._ref}>
+                        <span className="text-sm text-gray-700 pe-2" key={category._ref}>{findNameById(categories, category._ref)}</span>
+                      </Link>
+                    ))
+                  }
                   <Link className="" href={`/post/${post.slug.current}`}>
-                    <h2 className="text-2xl font-ubuntu-bold font-bold text-black">{post.title}</h2>
+                    <h3 className="font-ubuntu-bold font-bold text-black">{post.title}</h3>
                   </Link>
-                  <p className="text-gray-600 font-ubuntu-light">Secondary Title</p>
+                  <p className="text-gray-600 font-ubuntu-light">{getPortableTextPreview(post.body)}</p>
                 </div>
               </div>
             ))}

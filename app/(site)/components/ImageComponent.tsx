@@ -1,6 +1,7 @@
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
+import Image from "next/image";
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
   projectId && dataset
@@ -9,38 +10,74 @@ const urlFor = (source: SanityImageSource) =>
 
 export type ImageComponentProps = {
   image: string;
-  width: number;
-  height: number;
-} 
+  width?: string;
+  height?: string;
+}
 
-export function ImageComponent({image,width,height} : ImageComponentProps) {
-    if (!image) return null; 
+export function PostPreviewComponent({image} : ImageComponentProps) {
+    const url = urlFor(image)?.url();
+    if (!url) return null; 
     return (
-        <img className="w-full flex"
-        src={urlFor(image)?.width(width).height(height).url()}
+        <Image className="sm:max-w-[370px]"
+        src={url}
         alt={"Cover Image"}
-        width={width}
-        height={height}
+        width={800}
+        height={500}
+        loading="lazy"
+        placeholder="blur"
+        blurDataURL={urlFor(image)?.width(10).height(10).blur(10).url()} // Low-res preview
       />
     )
+}
+export function DetailImageComponent({image,width,height} : ImageComponentProps) {
+  const url = urlFor(image)?.url();
+  if (!url) return null; 
+  return (
+      <Image className=""
+      src={url}
+      alt={"Cover Image"}
+      width={800}
+      height={500}
+      style={{
+        width: width || "100%",
+        height: height || "auto",
+      }}
+      loading="lazy"
+      placeholder="blur"
+      blurDataURL={urlFor(image)?.width(10).height(10).blur(10).url()} // Low-res preview
+    />
+  )
 }
 export function ImageRoundedComponent({image,width,height} : ImageComponentProps) {
-    if (!image) return null; 
-    return (
-        <img className="flex rounded-full"
-        src={urlFor(image)?.width(width).height(height).url()}
-        alt={"Cover Image"}
-        width={width}
-        height={height}
-      />
-    )
+  const url = urlFor(image)?.url();
+  if (!url) return null; 
+  return (
+      <Image className="flex rounded-full"
+      src={url}
+      alt={"Cover Image"}
+      width={800}
+      height={500}
+      style={{
+        width: width || "100%",
+        height: height || "auto",
+      }}
+      loading="lazy"
+      placeholder="blur"
+      blurDataURL={urlFor(image)?.width(10).height(10).blur(10).url()} // Low-res preview
+    />
+  )
 }
 export function IconComponent({image,width,height} : ImageComponentProps) {
-  if (!image) return null; 
+  const url = urlFor(image)?.url();
+  if (!url) return null; 
   return (
-      <img className="flex w-6 h-6 object-cover"
-      src={urlFor(image)?.width(width).height(height).url()}
+      <Image className="flex w-6 h-6 object-cover"
+      src={url}
       alt={"Cover Image"}
+      width={800}
+      height={500}
+      placeholder="blur"
+      blurDataURL={urlFor(image)?.width(10).height(10).blur(10).url()} // Low-res preview
     />
   )
 }

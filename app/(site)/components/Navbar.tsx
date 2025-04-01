@@ -4,8 +4,9 @@ import Logo from "./Logo";
 import Image from "next/image";
 import { Category } from "@/types/Category";
 import { useState, useEffect } from "react";
+import { NavigationItem } from "@/types/NavigationItem";
 
-  export default function Navbar({ categories }: { categories: Category[] }) {
+  export default function Navbar({ navigationItems }: { navigationItems: NavigationItem[] }) {
     const [isOpen, setIsOpen] = useState(false);
     const handleDrawer = () => {
       setIsOpen(!isOpen);
@@ -71,14 +72,14 @@ import { useState, useEffect } from "react";
                   <span className="flex w-full items-center my-10" onClick={handleClose}>
                     <Logo/>
                   </span>
-                  {categories.map((category : Category) => {
+                  {navigationItems.map((navigationItem : NavigationItem) => {
                     return (
                       <span
-                        key={category._id}
-                        className="text-sm flex items-center mx-5 pb-3 pt-5 border-b border-gray-300"
+                        key={navigationItem._id}
+                        className="text-sm flex items-center mx-5 pb-3 pt-5 border-b border-gray-300 hover:scale-105 transition"
                       > 
-                        <Link href={`/${category.slug.current}`} key = {category._id} onClick={handleClose}>
-                          <span className="hover:scale-105 transition">{category.name}</span>
+                        <Link href={`/${navigationItem.slug.current}`} key = {navigationItem._id} onClick={handleClose}>
+                          <span className="">{navigationItem.name}</span>
                         </Link>
                       </span>
                     );
@@ -93,10 +94,10 @@ import { useState, useEffect } from "react";
                 justifyContent: "center",
             }}>
               <ul className="hidden md:flex gap-x-6 text-black">
-              {categories.map((category : Category) => (
-                <li key = {category._id} className="hover:scale-105 transition">
-                  <Link href={`/${category.slug.current}`} key = {category._id}>
-                    <p className="text-sm">{category.name}</p>
+              {navigationItems.map((navigationItem : NavigationItem) => (
+                <li key = {navigationItem._id} className="hover:scale-105 transition">
+                  <Link href={`/${navigationItem.slug.current}`} key = {navigationItem._id}>
+                    <p className="text-sm">{navigationItem.name}</p>
                   </Link>
                 </li>
                 ))}

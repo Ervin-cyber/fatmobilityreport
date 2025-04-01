@@ -8,3 +8,9 @@ export type Category = {
     description: PortableTextBlock[];
     order: number;
 }
+
+export type Category_ref = {
+    _ref: string;
+    _type: Date;
+    _key: string;
+}

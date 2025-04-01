@@ -27,6 +27,16 @@
   font-family: "Arial Black", sans-serif;
 }
 
+h1 { font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; }
+h2 { font-size: 2rem; font-weight: 600; margin-bottom: 0.75rem; }
+h3 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem; }
+h4 { font-size: 1.5rem; font-weight: 500; margin-bottom: 0.25rem; }
+
+p {
+  word-wrap: break-word;  /* For old browsers */
+  overflow-wrap: break-word; /* Modern browsers */
+  word-break: break-word;
+}
 
 body {
   background: var(--background);
