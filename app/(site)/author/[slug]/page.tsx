@@ -28,7 +28,7 @@ export default async function AuthorPage({
         }
       </div>
       <div className="border-t border-gray-300">
-        <h1 className="text-2xl text-black font-bold pt-4">Posts by author</h1>
+        <h1 className="font-ubuntu-bold text-2xl text-black font-bold pt-4">Posts by author</h1>
       <PostListComponent slug="" filter={`author._ref == "${author._id}"`} />
       </div>
     </div>

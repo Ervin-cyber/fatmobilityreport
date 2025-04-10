@@ -19,10 +19,24 @@ export const categoryType = defineType({//category schema type
           Rule.custom(async (slug, context) => {
             if (!slug?.current) return "Slug is required";
             if (!context?.document) return true;
+  
+            const currentId = context.document._id.replace(/^drafts\./, ""); // Normalize ID to match published version
+
+            const query = `*[
+              _type in ["category", "service"] 
+              && slug.current == $slug 
+              && _id != $id 
+              && _id != "drafts." + $id
+            ][0]`; // Exclude both draft and published versions
+      
+            const params = {
+              slug: slug.current,
+              id: currentId, // Ensure we compare correctly
+            };
 
             // Query to check if the slug exists in multiple document types
-            const query = `*[_type in ["category", "service"] && slug.current == $slug && _id != $id][0]`;
-            const params = { slug: slug.current, id: context.document._id };
+            /*const query = `*[_type in ["category", "service"] && slug.current == $slug && _id != $id][0]`;
+            const params = { slug: slug.current, id: context.document._id };*/
       
             const existingDoc = await client.fetch(query, params);
             return existingDoc ? "Slug must be unique across services and categories" : true;

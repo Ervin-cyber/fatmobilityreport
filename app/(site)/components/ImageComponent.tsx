@@ -4,7 +4,7 @@ import { client } from "@/sanity/client";
 import Image from "next/image";
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
+  projectId && dataset && source
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 

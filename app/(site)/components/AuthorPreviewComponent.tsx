@@ -7,7 +7,7 @@ export default async function AuthorPreviewComponent({slug, _id, coverImage, nam
     return (
         <div className="border-b border-gray-300">
             <div>
-                <h1 className="text-2xl text-black font-bold pt-4">About The Author</h1>
+                <h1 className="font-ubuntu-bold text-2xl text-black font-bold pt-4">About The Author</h1>
             </div>
             <Link href={`/author/${slug.current}`} key = {_id}>
                 <div className="flex  sm:flex-row items-center sm:items-start space-y-4 sm:space-x-4 pt-5" key = {_id}>

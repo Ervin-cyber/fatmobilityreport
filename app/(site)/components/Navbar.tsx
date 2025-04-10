@@ -87,7 +87,8 @@ import { NavigationItem } from "@/types/NavigationItem";
               </nav>
           </div>
 
-          <div className="w-full mx-auto h-full m-1">
+          {navigationItems.length > 0 && 
+            <div className="w-full mx-auto h-full m-1">
             <div style={{
                 display: "flex",
                 justifyContent: "center",
@@ -103,6 +104,7 @@ import { NavigationItem } from "@/types/NavigationItem";
               </ul>
             </div>
           </div>
+          }
         </div>
     );
   };
