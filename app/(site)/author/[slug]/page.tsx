@@ -18,18 +18,18 @@ export default async function AuthorPage({
   return (
     <div className="border-b border-gray-300 py-5">
       <div className="flex justify-center">
-        <ImageRoundedComponent image={author.coverImage} width={"150px"} height={"auto"}/>
+        <ImageRoundedComponent image={author.coverImage} width={"150px"} height={"auto"} />
       </div>
       <h1 className="flex justify-center font-baskervville text-5xl md:text-7xl text-black my-8">{author.name}</h1>
       <div className="prose">
-        <PortableText value={author.description} components={PortableTextComponents}/>
+        <PortableText value={author.description} components={PortableTextComponents} />
         {
           author.registeredAt && (<p className="py-5">Member since: {new Date(author.registeredAt).toLocaleDateString()}</p>)
         }
       </div>
       <div className="border-t border-gray-300">
         <h1 className="font-ubuntu-bold text-2xl text-black font-bold pt-4">Posts by author</h1>
-      <PostListComponent slug="" filter={`author._ref == "${author._id}"`} />
+        <PostListComponent slug="" filter={`author._ref == "${author._id}"`} />
       </div>
     </div>
 

@@ -8,14 +8,14 @@ import Footer from "./components/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: 'swap', 
+  display: 'swap',
   adjustFontFallback: false,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-  display: 'swap', 
+  display: 'swap',
   adjustFontFallback: false,
 });
 
@@ -23,7 +23,7 @@ const ubuntu_bold = Ubuntu({
   variable: "--font-ubuntu-bold",
   subsets: ["latin"],
   weight: "700",
-  display: 'swap', 
+  display: 'swap',
   adjustFontFallback: false,
 });
 
@@ -31,7 +31,7 @@ const ubuntu_light = Ubuntu({
   variable: "--font-ubuntu-light",
   subsets: ["latin"],
   weight: "300",
-  display: 'swap', 
+  display: 'swap',
   adjustFontFallback: false,
 });
 
@@ -39,7 +39,7 @@ const baskervville = Baskervville({
   variable: "--font-baskervville",
   subsets: ["latin"],
   weight: "400",
-  display: 'swap', 
+  display: 'swap',
   adjustFontFallback: false,
 });
 
@@ -47,7 +47,7 @@ const anton = Anton({
   variable: "--font-anton",
   subsets: ["latin"],
   weight: "400",
-  display: 'swap', 
+  display: 'swap',
   adjustFontFallback: false,
 });
 
@@ -68,7 +68,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${ubuntu_bold.variable} ${ubuntu_light.variable} ${baskervville.variable} ${anton.variable} antialiased min-h-screen`}
       >
-        <Navbar navigationItems={categories}/>
+        <header>
+          <Navbar navigationItems={categories} />
+        </header>
         <main className="flex-grow max-w-3xl px-3 md:mx-auto lg:mx-auto xl:mx-auto flex flex-col gap-4 mb-5">
           {children}
         </main>

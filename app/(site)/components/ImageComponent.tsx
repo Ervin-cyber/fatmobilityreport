@@ -14,26 +14,26 @@ export type ImageComponentProps = {
   height?: string;
 }
 
-export function PostPreviewComponent({image} : ImageComponentProps) {
-    const url = urlFor(image)?.url();
-    if (!url) return null; 
-    return (
-        <Image className="sm:max-w-[370px]"
-        src={url}
-        alt={"Cover Image"}
-        width={800}
-        height={500}
-        loading="lazy"
-        placeholder="blur"
-        blurDataURL={urlFor(image)?.width(10).height(10).blur(10).url()} // Low-res preview
-      />
-    )
-}
-export function DetailImageComponent({image,width,height} : ImageComponentProps) {
+export function PostPreviewComponent({ image }: ImageComponentProps) {
   const url = urlFor(image)?.url();
-  if (!url) return null; 
+  if (!url) return null;
   return (
-      <Image className=""
+    <Image className="sm:max-w-[370px]"
+      src={url}
+      alt={"Cover Image"}
+      width={800}
+      height={500}
+      loading="lazy"
+      placeholder="blur"
+      blurDataURL={urlFor(image)?.width(10).height(10).blur(10).url()} // Low-res preview
+    />
+  )
+}
+export function DetailImageComponent({ image, width, height }: ImageComponentProps) {
+  const url = urlFor(image)?.url();
+  if (!url) return null;
+  return (
+    <Image className=""
       src={url}
       alt={"Cover Image"}
       width={800}
@@ -48,11 +48,11 @@ export function DetailImageComponent({image,width,height} : ImageComponentProps)
     />
   )
 }
-export function ImageRoundedComponent({image,width,height} : ImageComponentProps) {
+export function ImageRoundedComponent({ image, width, height }: ImageComponentProps) {
   const url = urlFor(image)?.url();
-  if (!url) return null; 
+  if (!url) return null;
   return (
-      <Image className="flex rounded-full"
+    <Image className="flex rounded-full"
       src={url}
       alt={"Cover Image"}
       width={800}
@@ -67,11 +67,11 @@ export function ImageRoundedComponent({image,width,height} : ImageComponentProps
     />
   )
 }
-export function IconComponent({image} : ImageComponentProps) {
+export function IconComponent({ image }: ImageComponentProps) {
   const url = urlFor(image)?.url();
-  if (!url) return null; 
+  if (!url) return null;
   return (
-      <Image className="flex w-6 h-6 object-cover"
+    <Image className="flex w-6 h-6 object-cover"
       src={url}
       alt={"Cover Image"}
       width={800}

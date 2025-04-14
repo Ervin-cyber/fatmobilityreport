@@ -20,7 +20,7 @@ export function getPortableTextPreview(portableText?: PortableTextBlock[], wordL
   // Apply truncation logic
   return truncateText(text, wordLimit, charLimit);
 }
-export function truncateText(text:string, wordLimit = 16, charLimit = 93) {
+export function truncateText(text: string, wordLimit = 16, charLimit = 93) {
   // Trim whitespace
   text = text.trim();
 
